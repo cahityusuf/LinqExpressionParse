@@ -2,26 +2,58 @@
 
 $('#input1').on('change', function () {
     var deger = $('#input1').val();
-    if (deger!=null) {
-        sorgu.push({
-            'Key': 'Name',
-            'Value': $('#input1').val(),
-            'Query': $('#sorguSecimi1').val()
-        });
-    }
+    if (deger !== "") {
+        if (sorgu.length > 0) {
+            var deger = sorgu.findIndex(x => x.Key == 'Name');
+            if (deger !== -1) {
+                sorgu.find(x => x.Key == 'Name').Value = $('#input1').val();
+            } else {
+                sorgu.push({
+                    'Key': 'Name',
+                    'Value': $('#input1').val(),
+                    'Query': $('#sorguSecimi1').val()
+                });
+            }
+        } else {
+            sorgu.push({
+                'Key': 'Name',
+                'Value': $('#input1').val(),
+                'Query': $('#sorguSecimi1').val()
+            });
+        }
 
+    } else {
+        sorgu.splice(sorgu.findIndex(x => x.Key == 'Name'), 1);
+    }
+    console.log(sorgu);
 });
 
 $('#input2').on('change', function () {
     var deger = $('#input2').val();
-    if (deger != null) {
-        sorgu.push({
-            'Key': 'Qty',
-            'Value': $('#input2').val(),
-            'Query': $('#sorguSecimi2').val()
-        });
-    }
+    if (deger !== "") {
+        if (sorgu.length > 0) {
+            var deger = sorgu.findIndex(x => x.Key == 'Qty')
+            if (deger !== -1) {
+                sorgu.find(x => x.Key == 'Qty').Value = $('#input2').val();
+            } else {
+                sorgu.push({
+                    'Key': 'Qty',
+                    'Value': $('#input2').val(),
+                    'Query': $('#sorguSecimi2').val()
+                });
+            }
+        } else {
+            sorgu.push({
+                'Key': 'Qty',
+                'Value': $('#input2').val(),
+                'Query': $('#sorguSecimi2').val()
+            });
+        }
 
+    } else {
+        sorgu.splice(sorgu.findIndex(x => x.Key == 'Qty'), 1);
+    }
+    console.log(sorgu);
 });
 
 $('#sorguSecimi1').on('change', function () {

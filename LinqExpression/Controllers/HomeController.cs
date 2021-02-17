@@ -38,20 +38,18 @@ namespace LinqExpression.Controllers
         {
 
             var testdata = new List<Ownr> {
-        //new Ownr{Name = "abc", Qty = 20}, // uncomment this to see it getting filtered out
                 new Ownr{Name = "abc", Qty = 2},
                 new Ownr{Name = "abcd", Qty = 11},
                 new Ownr{Name = "xyz", Qty = 40},
                 new Ownr{Name = "ok", Qty = 5},
             };
+
             Expression<Func<Ownr, bool>> func=null;
 
             foreach (var item in sorgu)
             {
-                func = Extentions.strToFunc<Ownr>(item.Key, item.Query, item.Value);
+                func = Extentions.strToFunc<Ownr>(item.Key, item.Query, item.Value,func);
             }
- //func = Extentions.strToFunc<Ownr>("Qty", "<=", "10");
- //           func = Extentions.strToFunc<Ownr>("Name", "==", "abc", func);
 
             var result = testdata.Where(func.ExpressionToFunc()).ToList();
 
